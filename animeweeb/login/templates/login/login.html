@@ -1,0 +1,39 @@
+{% extends 'login/base.html' %}
+{% block content %}
+<div style="background-image: url(https://assets3.thrillist.com/v1/image/2855064/size/gn-gift_guide_variable_c_2x.jpg); height: 91vh;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="row borderstyle" style=" width: 50%;">
+                <div class="col-12">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div style="padding-bottom: 50px; color: blue;">
+                        <h1> Log in</h1>
+                        </div>
+    
+                        <div class="form-row justify-content-center">
+                            <div class="form-group col-md-12" style="padding-right: 40px;">
+                                <labe style="color: white;">Username</label>
+                                <input type="text" class="form-control" name="username">
+                            </div>
+                        </div>
+    
+                        <div class="form-row justify-content-center">
+                            <div class="form-group col-md-12" style="padding-right: 40px;">
+                                <label style="color: white;">Password</label>
+                                <input type="password" class="form-control" name="password">
+                            </div>
+                        </div>
+    
+                        <div class="form-group row justify-content-center">
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary btn-block">Log in</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
