@@ -97,3 +97,6 @@ def search(request):
 		query = request.GET['s']
 		anime = get_data_querys(str(query))
 	return render(request, "animelist.html", {'anime': anime})
+
+def library(request):
+    return render(request, "login/library.html", context={})
