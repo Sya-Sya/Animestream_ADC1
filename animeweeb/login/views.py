@@ -16,13 +16,13 @@ def user_login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponse("user logged in. username = "+user.username)
+            return redirect('members')
             # return redirect('login')
         else:
             return HttpResponse("Wrong Credientials")
     else: 
         if request.user.is_authenticated:
-            return HttpResponse("user logged in. username = "+request.user.username)
+            return redirect('members')
         else: 
             return render(request, "login/login.html", context={})
     
