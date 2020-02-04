@@ -16,7 +16,7 @@ class Anime(models.Model):
 	Anime_description = models.TextField()
 	Anime_file = models.FileField(upload_to='Anime/')
 	Anime_Category = models.CharField(max_length=100)
-	Anime_view = models.IntegerField()
+	Anime_view = models.IntegerField(default=0)
 	Upload_date = models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):

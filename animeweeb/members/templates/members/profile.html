@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="first">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="text" name="title" placeholder="Title" required>
+    <input type="text" name="des" placeholder="Description" required>
+    <input type="file" name="vid" placeholder="Video" required>
+    <input type="text" name="cat" placeholder="category" required>
+    <input type="submit">
+  </form>
+</div>
+{% endblock %}
