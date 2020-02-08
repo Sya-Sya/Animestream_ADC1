@@ -5,6 +5,7 @@ from login.models import Anime
 # Create your views here.
 @login_required(login_url="/login/")
 def members(request):
+    animes = Anime.objects.all()
     if request.method == "POST":
         title = request.POST.get('title')
         des = request.POST.get('des')
@@ -19,4 +20,4 @@ def members(request):
         return redirect('anime')
 
     else:
-        return render(request, "members/profile.html", context={})
+        return render(request, "members/profile.html", context={"animes":animes})

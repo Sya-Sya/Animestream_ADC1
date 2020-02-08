@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
+
+{% block login/register %}
+
+{% endblock login/register %}
+
 {% block content %}
 <div class="first">
   <form method="POST" enctype="multipart/form-data">
@@ -11,4 +16,29 @@
     <input type="submit">
   </form>
 </div>
+
+
+{% for anime in animes %}
+<div class="row justify-content-md-center">
+  <div class="row justify-content-md-center">
+      <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+      <div class="row"> 
+      <div class="card" style="width: 16rem;">
+  <div class="card-body">
+    <a href="{{anime.Anime_file.url}}">
+      <img src='/static/play.jpg/' alt="Video" style="height: 200px; width: 200px; border: 1px solid;">
+    </a>
+    <h5 class="card-title">{{anime.Anime_title}}</h5>
+    <p class="card-text">{{anime.Anime_description}}</p>
+    <a href="{{anime.Anime_file.url}}" class="btn btn-primary" Download>Download</a>
+    <a href="#" class="btn btn-primary" Download>Delete</a>
+    <a href="#" class="btn btn-primary" Edit>Edit</a>
+  </div>
+</div>
+</div>
+</div>
+{% endfor %}
+  
 {% endblock %}
+
+

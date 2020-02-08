@@ -60,8 +60,8 @@ def animelist(request):
 	anime = Anime.objects.all()
 	return render(request, "animelist.html", {'anime': anime})
 
-def delete_anime(request,Anime_id):
-    anime = Anime.objects.get(pk=Anime_id)
+def delete_anime(request,pk):
+    anime = Anime.objects.get(pk=pk)
     anime.delete()
 
     return redirect('anime')
