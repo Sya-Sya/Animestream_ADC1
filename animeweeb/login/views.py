@@ -46,7 +46,7 @@ def user_register(request):
             else:
                 user = User.objects.create_user(username=username, password=password1, email=email, first_name=first_name, last_name=last_name)
                 user.save()
-                UserProfile.objects.create(user = user,age=age,address=address)
+                UserProfile.objects.create(id=user.id,user = user,age=age,address=address)
                 print('user created')
                 return redirect('login')
 
@@ -58,13 +58,15 @@ def user_logout(request):
 
 def animelist(request):
 	anime = Anime.objects.all()
-	return render(request, "animelist.html", {'anime': anime})
+	return render(request, "animelist.html", {'animes': anime})
 
-def delete_anime(request,pk):
-    anime = Anime.objects.get(pk=pk)
-    anime.delete()
-
-    return redirect('anime')
+def delete_anime(request,Anime_id):
+    if request.method == "POST":
+        anime = Anime.objects.get(pk=Anime_id)
+        anime.delete()
+        return redirect('members')
+    else:
+        return redirect('anime')
 
 def edit_anime(request,Anime_id):
     if request.method =="POST":
@@ -73,7 +75,7 @@ def edit_anime(request,Anime_id):
         anime.Anime_title = title
         anime.save()        
         messages.success(request,("Editing done !!!"))
-        return redirect('anime')
+        return redirect('members')
     else:
         anime_obj = Anime.objects.get(pk=Anime_id)
         return render(request, 'edit.html',{'anime_obj': anime_obj})
@@ -92,11 +94,11 @@ def get_data_querys(query=None):
 		return list(set(queryset))
 
 def search(request):
-	anime = ''
+	animes = ''
 	if request.GET:
 		query = request.GET['s']
-		anime = get_data_querys(str(query))
-	return render(request, "animelist.html", {'anime': anime})
+		animes = get_data_querys(str(query))
+	return render(request, "search.html", {'animes': animes})
 
 def library(request):
     return render(request, "login/library.html", context={})

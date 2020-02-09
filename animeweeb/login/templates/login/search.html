@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h4>Search Result:</h4>
+{% for anime in animes %}
+      <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+      <div class="row"> 
+      <div class="card" style="width: 16rem;">
+  <div class="card-body">
+    <a href="{{anime.Anime_file.url}}" target="_blank">
+      <img src='/static/play.jpg/' alt="Video" style="height: 200px; width: 200px; border: 1px solid;">
+    </a>
+    <h5 class="card-title">Title: {{anime.Anime_title}}</h5>
+    <p class="card-text">Description: {{anime.Anime_description}}</p>
+    {% if anime.user_id == request.user.id %}
+    <p class="card-text">Uploaded by: {{request.user.username}}</p>
+    {% endif %}
+    <a href="{{anime.Anime_file.url}}" class="btn btn-primary" Download>Download</a>
+    
+    {% if anime.user_id == request.user.id %}
+    <form action="{% url 'delete_anime' anime.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Delete</button>
+    </form>
+    <a href="{% url 'edit_anime' anime.pk %}" class="btn btn-primary">Edit</a>
+    {% endif %}
+  </div>
+</div>
+</div>
+</div>
+{% endfor %}
+  
+{% endblock %}
+
+

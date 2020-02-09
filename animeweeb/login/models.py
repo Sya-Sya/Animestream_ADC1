@@ -18,6 +18,7 @@ class Anime(models.Model):
 	Anime_Category = models.CharField(max_length=100)
 	Anime_view = models.IntegerField(default=0)
 	Upload_date = models.DateTimeField(auto_now_add=True)
+	user = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
 
 	def __str__(self):
 		return self.Anime_title

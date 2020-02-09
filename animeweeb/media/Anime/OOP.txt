@@ -1,0 +1,7 @@
+image slider = height fix
+watch click = video play garne
+edit = jpt.
+log-out button = log out hunu prayo
+video download = download hunu prayo
+file upload = desgine 
+footer = customize garne
