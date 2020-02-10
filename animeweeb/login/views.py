@@ -10,7 +10,7 @@ from django.db.models import Q
 
 # Create your views here.
 def user_login(request):# TO give access user
-    if request.method == 'POST':
+    if request.method == 'POST': # POST is used to insert/update remote data
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password) 
@@ -38,7 +38,7 @@ def user_register(request):# To create new user
         age = request.POST['age']
         address = request.POST['address']
 
-        if password1==password2:#condition
+        if password1==password2: #applying if/else conditions in registry form
             if User.objects.filter(username=username).exists():
                 print("username taken")
             elif User.objects.filter(email=email).exists():
@@ -50,10 +50,10 @@ def user_register(request):# To create new user
                 print('user created')
                 return redirect('login')
 
-    return render(request, "login/register.html", context={})
+    return render(request, "login/register.html", context={}) #requesting to redirect requested page
 
-def user_logout(request):
-    logout(request)
+def user_logout(request): #To logout from webapp by clearing local user caches.
+    logout(request)       # Makes webapp more secured.
     return redirect('login')
 
 def animelist(request):# To show lists of animes
@@ -63,7 +63,7 @@ def animelist(request):# To show lists of animes
 def delete_anime(request,Anime_id):
     if request.method == "POST":
         anime = Anime.objects.get(pk=Anime_id)
-        anime.delete()
+        anime.delete() # To delete recorded data in the webapp
         return redirect('members')
     else:
         return redirect('anime')
