@@ -1,6 +1,7 @@
 from django.test import TestCase,SimpleTestCase, Client
 from login.models import *
 from login.views import *
+from login.urls import *
 from django.urls import reverse,resolve
 
 class Test_URL(SimpleTestCase): #testing urls
