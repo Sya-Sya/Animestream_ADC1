@@ -1,6 +1,6 @@
 from django.test import TestCase,SimpleTestCase, Client
-from .models import *
-from .views import *
+from login.models import *
+from login.views import *
 from django.urls import reverse,resolve
 
 class Test_URL(SimpleTestCase): #testing urls
@@ -24,14 +24,14 @@ class Test_view(SimpleTestCase):   #testing views
 
 class Test(TestCase): #Model testing     
     def test_dESC(self):
-        desc = Anime.objects.create(Anime_title="Animeislifenibb", upload_date="2002-06-02",
-                                      movie_description = "hi there whats up jhcv dcb d b ."
+        desc = Anime.objects.create(user="Animeislifenibb", address="nekoneko@gmail.com",
+                                      age = "50"
                                       )
-        use=Anime.objects.get(Anime_title="chartpaper")
-        self.assertEquals(use.movie_title,"chartpaper")
+        use = Anime.objects.get(user="Animeislifenibb")
+        self.assertEquals(use.user,"Animeislifenibb")
     
     def test_title(self):
-        desc = Movies.objects.create(movie_title="Lotlot", release_date="2002-06-02",
-                                      movie_description = "hi there whats up jhcv dcb d b ."
+        desc = Anime.objects.create(user="prashantiaunt", address="nekoneko@gmail.com",
+                                     age = "50"
                                       )
         self.assertTrue(desc.TestTitle())

@@ -13,7 +13,7 @@ def user_login(request):# TO give access user
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(username=username, password=password)
+        user = authenticate(username=username, password=password) 
         if user is not None:
             login(request, user)
             return redirect('members')
@@ -83,22 +83,22 @@ def edit_anime(request,Anime_id):
 def get_data_querys(query=None):
 	queryset = []
 
-	queries = query.split(" ")
+	queries = query.split(" ") #Splitting a query into individual fields
 	for q in queries:
 		animies = Anime.objects.filter(
             Q(Anime_title__icontains = q)
             ).distinct()
 
 		for anime in animies:
-		    queryset.append(anime)
+		    queryset.append(anime) # adding model instance to a django queryset
 		return list(set(queryset))
 
-def search(request):
+def search(request): # function to enable smooth searching function 
 	animes = ''
 	if request.GET:
 		query = request.GET['s']
 		animes = get_data_querys(str(query))
 	return render(request, "search.html", {'animes': animes})
-
+@login           #using decorator
 def library(request):
     return render(request, "login/library.html", context={})
