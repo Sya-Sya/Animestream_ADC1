@@ -1,7 +1,10 @@
 from django.test import SimpleTestCase, Client 
 #client, used to memic how the user can access our views
+from django.urls import reverse, resolve
+from restapi.urls import addAnime
 
 class TestUrls(SimpleTestCase):
     def test_login_url_is_resolved(self):
-        assert 1 == 2
+        url = reverse("addAnime")
+        print((url))
 
