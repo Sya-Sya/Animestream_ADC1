@@ -9,7 +9,7 @@ import json
 from django.db.models import Q
 
 # Create your views here.
-def user_login(request):
+def user_login(request):# TO give access user
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -27,9 +27,9 @@ def user_login(request):
             return render(request, "login/login.html", context={})
     
 
-def user_register(request):
+def user_register(request):# To create new user
     if request.method == 'POST':
-        first_name = request.POST['first_name']
+        first_name = request.POST['first_name']# Both name same as the name of field in html file
         last_name = request.POST['last_name']
         username = request.POST['username']
         password1 = request.POST['password1']
@@ -38,7 +38,7 @@ def user_register(request):
         age = request.POST['age']
         address = request.POST['address']
 
-        if password1==password2:
+        if password1==password2:#condition
             if User.objects.filter(username=username).exists():
                 print("username taken")
             elif User.objects.filter(email=email).exists():
@@ -56,7 +56,7 @@ def user_logout(request):
     logout(request)
     return redirect('login')
 
-def animelist(request):
+def animelist(request):# To show lists of animes
 	anime = Anime.objects.all()
 	return render(request, "animelist.html", {'animes': anime})
 
