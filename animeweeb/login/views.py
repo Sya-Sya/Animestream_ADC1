@@ -99,6 +99,6 @@ def search(request): # function to enable smooth searching function
 		query = request.GET['s']
 		animes = get_data_querys(str(query))
 	return render(request, "search.html", {'animes': animes})
-@login           #using decorator
+#@login           #using decorator
 def library(request):
     return render(request, "login/library.html", context={})
