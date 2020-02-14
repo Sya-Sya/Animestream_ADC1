@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-
+app_name = "login"
 urlpatterns = [
     path('',views.animelist, name='anime'),
     path('delete/<Anime_id>',views.delete_anime, name='delete_anime'),

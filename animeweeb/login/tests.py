@@ -1,11 +1,10 @@
-from django.test import TestCase,SimpleTestCase, Client
+from django.test import TestCase, Client
 from .models import *
 from .views import *
-from .urls import *
 from django.urls import reverse,resolve
 from django.contrib.auth.models import User
 
-class Test_URL(TestCase): #testing urls
+class Test_URL(TestCase): #testing login
     def test_user(self):
         user = User.objects.create_user(username="username", password="password1", email="email@gmail.com", first_name="first_name", last_name="last_name")
         user.save()
@@ -13,14 +12,21 @@ class Test_URL(TestCase): #testing urls
         self.assertEqual(profile1.age,18)
         self.assertEqual(profile1.address,"handigau")
 
-# class Test_view(SimpleTestCase):   #testing views
-#     def test_register(self):
+ #class Test_view(SimpleTestCase):   #testing views
+#   def test_register(self):
 #         c=Client()
 #         url=reverse("login:register") #reverse is used to show path 
 #         response=c.get(url)
 #         self.assertEquals(response.status_code,200)
     
-#     def test_login(self):   # testing login
+class Test_animelist(TestCase):
+     def test_animelist(self):
+         url=reverse("login:anime")
+    
+         self.assertEquals(resolve(url).func,animelist)
+        
+     
+#     def test_login(self):   # testing urls
 #         c=Client()
 #         url=reverse("login:login")
 #         response=c.get(url)
